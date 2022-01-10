@@ -1,6 +1,6 @@
 import React from "react";
 import Display  from "./Display";
-// import ReactDOM from 'react-dom';
+
 
 export default class Info extends React.Component {
   constructor(props) {
