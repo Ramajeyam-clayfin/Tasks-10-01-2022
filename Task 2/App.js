@@ -1,36 +1,58 @@
 import React from "react";
-import ReactDOM from 'react-dom';
+import Display  from "./Display";
+// import ReactDOM from 'react-dom';
 
 export default class Info extends React.Component {
   constructor(props) {
     super(props);
     this.state = {Name: ' '};
-    this.handleChange = this.handleChange.bind(this);
+    this.NewName = this.NewName.bind(this);
     this.state = {City: ' '};
-    this.handleChange1 = this.handleChange1.bind(this);	
+    this.NewCity = this.NewCity.bind(this);
+    this.Submit = this.Submit.bind(this);
   }
-     handleChange(event) {   
-      this.setState({Name: event.target.value}); 
+  NewName(event) {   
+     this.setState({Name: event.target.value}); 
      }
-     handleChange1(event) {   
+     NewCity(event) {   
       this.setState({City: event.target.value});
       }
-render() {
+      Submit(event) {
+      event.preventDefault();
+      }
+
+  render() {
     return (
-      <div>
+      <form onSubmit={this.Submit}>
         <label>
           Name : 
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
+          <input type="text" value={this.state.value} onChange={this.NewName} />
+        </label><br></br> <br></br>
         <label>
           City : 
-          <input type="text" value={this.state.value} onChange={this.handleChange1} />
-        </label>
-        <input type="submit" value="Submit" />
-        <p>Name Is : {this.state.Name}</p>
-        <p>City Is : {this.state.City}</p>
+          <input type="text" value={this.state.value} onChange={this.NewCity} />
+        </label> <br></br> <br></br>
+        <input type="submit" />
+        <p>My Name Is : {this.state.Name}</p>
+        <p>My City Is : {this.state.City}</p>
         
-      </div>
+        <MyForm BName = {this.state.Name} BCity = {this.state.City} />
+        <Display BName = {this.state.Name} BCity = {this.state.City} />
+        
+      </form>
     );
   }
 }
+
+class MyForm extends React.Component {
+
+  render() {
+    return (
+      <form>
+      <textarea value={"I Am " + (this.props.BName) + " From " + (this.props.BCity)} />
+      </form>
+    );
+  }
+}
+
+export {MyForm}
